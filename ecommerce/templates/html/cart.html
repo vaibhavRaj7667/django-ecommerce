@@ -1,0 +1,69 @@
+{% extends "html/footer.html" %}
+{% load static %}
+
+{% block main %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+
+    <div class='conatiner'>
+
+        <div class="products">
+            <h1>Shopping cart</h1>
+
+            <div class='names'>
+                <p>Product</p>
+                <p>Quantity</p>
+                <p> </p>
+
+            </div>
+            <div class="items">
+
+                {% for cart_item in cart_items %}
+
+                <div class='lol'>
+
+                    <p>{{cart_item.product}}</p>
+                        
+                    <p>{{cart_item.quantity}}</p>
+
+                    <button onclick="location.href='{% url 'remove_from_cart' slug=cart_item.product.slug %}'">Remove</button>
+                </div>
+
+               
+
+                {% endfor %}
+
+            </div>
+
+            
+        </div>
+
+        <div class="total">
+            <p> Total:{{total_price}}</p>
+            <button>Order Now</button>
+        </div>
+
+    </div>
+
+
+
+
+    {% comment %} {% for cart_item in cart_items %}
+
+    <p>{{cart_item}}</p>
+
+    {% endfor %} {% endcomment %}
+    
+
+    {% comment %} <h1>{{total_price}}</h1> {% endcomment %}
+</body>
+</html>
+
+{% endblock main %}

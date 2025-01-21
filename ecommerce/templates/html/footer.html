@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/foot.css' %}">
+</head>
+
+<body>
+
+
+    <header>
+        <div class="nav-bar">
+            <p>UniqFinds</p>
+            <ul class="nav-bar-links">
+                <li><a href="{% url 'Home' %}">Home</a></li>
+                <li><a href="{% url 'products' slug='kurti' %}">Women</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Sale</a></li>
+            </ul>
+            <a href="{% url 'view_cart' %}">
+                <img src="https://img.icons8.com/?size=100&id=85180&format=png&color=000000" alt="">
+            </a>
+        </div>
+    </header>
+
+    {% block main %}
+    
+    {% endblock main %}
+    <div class="footer">
+
+        <div class="tags">
+
+            <div>
+                <img src="https://img.icons8.com/?size=100&id=112472&format=png&color=000000" alt="">
+                <p>Free shipping</p>
+                <h6>Free shipping for order above $100</h6>
+            </div>
+
+            <div>
+                <img src="https://img.icons8.com/?size=100&id=484&format=png&color=000000" alt="">
+                <p>Money Guarantee</p>
+                <h6>within 30 days for an exchange</h6>
+            </div>
+
+            <div>
+                <img src="https://img.icons8.com/?size=100&id=wUB0486fVP3Z&format=png&color=000000" alt="">
+                <p>Online Support</p>
+                <h6>24 Hours a day, 7 days a week</h6>
+            </div>
+
+            <div>
+                <img src="https://img.icons8.com/?size=100&id=Hn53LPcOJXnv&format=png&color=000000" alt="">
+                <p>Flexible Payment</p>
+                <h6>Pay with multiple credit card</h6>
+            </div>
+        </div>
+
+        <div class="links">
+            <div class="social">
+                <img src="https://img.icons8.com/?size=100&id=rMXM_J0hBtPS&format=png&color=000000" alt="">
+                
+            </div>
+
+            <div class="contacts">
+                <p>details</p>
+            </div>
+
+            <div class="mails">
+                <p>emial input fileds</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

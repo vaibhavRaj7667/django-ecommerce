@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.conatiner {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+}
+
+.products {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+}
+
+.names {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.items {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    justify-content: space-around;
+    font-weight: bolder;
+}
+
+.total {
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.total button {
+    margin-top: 50px;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.lol {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.lol button {
+    border: none;
+    color: white;
+    background-color: black;
+    padding: 5px;
+    width: 80px;
+    height: 20px;
+    border-radius: 10px;
+}

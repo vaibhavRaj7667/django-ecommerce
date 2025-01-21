@@ -1,0 +1,102 @@
+{% extends "html/footer.html" %}
+{% load static %}
+
+{% block main %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+</head>
+
+<body>
+    <div class="conatiner">
+
+
+        <div class="main">
+
+            <div class="filters">
+
+                <div class="categories">
+                    <h3>Categories</h3>
+                    <a href="">Men</a>
+                    <a href="">Women</a>
+                    <a href="">Bags</a>
+                    <a href="">Clothing</a>
+                    <a href="">Shoes</a>
+                    <a href="">Accessories</a>
+                    <a href="">Others</a>
+                </div>
+
+                <div class="price">
+                    <h3>Price</h3>
+                    <input
+                        id="priceRange"
+                        type="range"
+                        min="300"
+                        max="2000"
+                        value="330"
+                        oninput="updatePriceValue(this.value)"
+                    >
+                    <p id="priceValue"></p>
+                    <a id="searchLink" href="{% url 'products_by_price' slug=Categorys.slug price=2000 %}">seacrh</a>
+                </div>
+
+            </div>
+
+            <div class="items">
+
+                <div class="counts">
+                    <h1>need to edit</h1>
+                </div>
+
+                <div class="products_card">
+
+                    {% for item in items %}
+
+                    <input type="hidden" class="hiddenData" value="{{item.category}}"> 
+
+                    
+                    <a href="{% url 'items' slug_=item.slug %}">
+                    <div class="cards">
+                        <img src="{{item.image.url}}">
+                        <p>{{item.name}}</p>
+
+
+                    </div>
+                    </a>
+                    
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        const searchLink = document.getElementById('searchLink');
+
+        function updatePriceValue(value) {
+            // Update the displayed price value
+            priceValue.textContent = value;
+
+            // Update the dynamic href of the link
+            const baseUrl = "{% url 'products_by_price' slug=Categorys.slug price=0 %}".replace('0', value);
+            searchLink.href = baseUrl;
+        }
+        
+          
+
+    </script>
+</body>
+
+</html>
+
+{% endblock main %}

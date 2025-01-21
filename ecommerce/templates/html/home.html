@@ -1,0 +1,112 @@
+{% extends "html/footer.html" %}
+{% load static %}
+
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+
+<body>
+    {% comment %} <header>
+        <div class="nav-bar">
+            <p>UniqFinds</p>
+            <ul class="nav-bar-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Sale</a></li>
+            </ul>
+        </div>
+    </header> {% endcomment %}
+
+    <div class="banner">
+
+
+        <div class="sales">
+            <h1>Elevate Your<br>
+                Wardrobe</h1>
+            <h2>Exclusive Styles <br> for Every Occasion</h2>
+            <p>Discover timeless elegance with our new collection – Limited Time Offer!</p>
+
+            <diV class="buttons">
+
+            </diV>
+
+        </div>
+
+        <div class="images_conatiner">
+            <img src="https://i.pinimg.com/736x/fc/02/ec/fc02ec9ccfd061c6190a37f1c3816ff0.jpg">
+        </div>
+
+
+
+    </div>
+
+    <div class="products">
+        <div class="products_card">
+
+            {% for kurti in kurtis %}
+            
+            
+            <div class="cards">
+                <img src="{{ kurti.image.url }}">
+                <p>New Arrivals</p>
+                <p>Shop Now</p>
+
+            </div>
+            
+            {% endfor %}
+
+        </div>
+
+
+        <div class="titles">
+
+            <div class="new_arrival">
+                <h1>New Arrival</h1>
+            </div>
+
+            <div class="buttonss">
+
+                <a href="{% url 'home_with_slug' slug='shirts' %}">T-shirt</a>
+                <a href="#">Coats</a>
+                <a href="#">Jeans</a>
+                <a href="#">Shoes</a>
+
+            </div>
+        </div>
+
+        <div class="containts">
+
+            {% for product in products %}
+            
+            
+            <a href="{% url 'items' slug_=product.slug %}">
+            <div class="main_card">
+                <img src="{{product.image.url}}">
+                <div class="product_details">
+                    <p>{{product.name}}</p>
+                    <p>${{product.price}}</p>
+                </div>
+               
+            </div>    
+            </a>
+            
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
+{% endblock main %}
