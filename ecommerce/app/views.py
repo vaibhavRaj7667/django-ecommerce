@@ -54,6 +54,18 @@ def LoginUser(request):
     return render(request, 'html/login.html')
 
 
+def registerUser(request):
+    if request.method =="POST":
+        form = userCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+            return redirect('LoginUser')
+    else:
+        form = userCreationForm()
+    return render(request,'html/register.html',{'form':form})
+
+
 
 def LogoutUser(request):
     logout(request)
@@ -117,6 +129,7 @@ def remove_from_cart(request, slug):
     cart = get_or_create_cart(request)
     product = get_object_or_404(Product, slug=slug)
     CartItem.objects.filter(cart=cart, product=product).delete()
+    messages.success(request, f"{product.name} Delete from cart")
     # return JsonResponse({"message": "Product removed from cart successfully"})
     return redirect('view_cart')
 

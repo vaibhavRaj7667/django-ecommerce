@@ -28,6 +28,8 @@ urlpatterns = [
     path('products/<slug:slug>/',products,name="products"),
     path('products/<slug:slug>/<int:price>/',products, name='products_by_price'),
     path('items/<slug:slug_>/',items,name="items"),
+    path('register/',registerUser,name="registerUser"),
+    path('logout/',LogoutUser,name="LogoutUser"),
 
     path('cart/add/<slug:slug>/', add_to_cart, name='add_to_cart'),
     path('cart/remove/<slug:slug>/', remove_from_cart, name='remove_from_cart'),

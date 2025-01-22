@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="model_image">
+            <img src="https://i.pinimg.com/736x/e1/76/d1/e176d1b2817780f38bfd186102532275.jpg" alt="Model Image">
+        </div>
+        <div class="login">
+            <h1>Hello, <br> Welcome Here</h1>
+            <p>Register to create a new account</p>
+            <form method="post" action="{% url 'registerUser' %}">
+                {% csrf_token %}
+                {{form.username}}
+                {{form.email}}
+                {{form.password1}}
+                {{form.password2}}
+                <button type="submit">Register:</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
