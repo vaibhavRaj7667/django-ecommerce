@@ -42,6 +42,7 @@ def LoginUser(request):
         
         if user is not None:
             login(request, user) 
+
             return redirect('Home') 
         else:
             messages.error(request, "Invalid email or password.")
@@ -139,3 +140,76 @@ def view_cart(request):
     cart_items = cart.items.all()
     total_price = sum(item.product.price * item.quantity for item in cart_items)
     return render(request, 'html/cart.html', {'cart_items': cart_items, 'total_price': total_price})
+
+
+
+def place_order(request):
+    
+    try:
+        cart = Cart.objects.get(user=request.user)
+        if not cart.items.exists():
+            messages.error(request, "Your cart is empty! Please add items to your cart before placing an order.")
+            return redirect('view_cart')  
+    except Cart.DoesNotExist:
+        return render(request, 'html/create_order.html', {
+            'error': 'No active cart found! Please add items to your cart first.',
+        })
+
+    if request.method == 'POST':
+      
+        address = request.POST.get('address', '').strip()
+        if not address:
+            return render(request, 'html/create_order.html', {
+                'cart': cart,
+                'error': 'Delivery address is required.',
+            })
+
+       
+        order = Order.objects.create(
+            user=request.user,
+            cart = cart,
+            address=address
+        )
+
+       
+        for cart_item in cart.items.all():
+            OrderItem.objects.create(
+                order=order,
+                product=cart_item.product,
+                quantity=cart_item.quantity,
+                price=cart_item.product.price,  
+            )
+
+      
+        order.calculate_total()
+
+       
+        cart.items.all().delete()
+
+        
+        return render(request, 'html/create_order.html', {
+            'message': 'Your order has been successfully placed!',
+            'order': order,
+        })
+
+    
+    return render(request, 'html/create_order.html', {
+        'cart': cart,
+    })
+
+
+
+
+
+def order_list(request):
+    orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'html/order_list.html', {'orders': orders})
+
+
+
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'order_detail.html', {'order': order})
+
+
+

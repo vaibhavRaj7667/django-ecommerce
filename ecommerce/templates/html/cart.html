@@ -58,7 +58,10 @@
 
         <div class="total">
             <p> Total:{{total_price}}</p>
-            <button>Order Now</button>
+            <a href="{% url 'place_order' %}">
+
+                <button>Order Now</button>
+            </a>
         </div>
 
 

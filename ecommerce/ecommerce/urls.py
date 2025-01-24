@@ -34,6 +34,8 @@ urlpatterns = [
     path('cart/add/<slug:slug>/', add_to_cart, name='add_to_cart'),
     path('cart/remove/<slug:slug>/', remove_from_cart, name='remove_from_cart'),
     path('cart/',view_cart, name='view_cart'),
+    path('order/',place_order,name='place_order'),
+    path('orderlist/',order_list,name="order_list")
 ]
 
 if settings.DEBUG:
