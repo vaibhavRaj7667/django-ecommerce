@@ -48,7 +48,7 @@ def LoginUser(request):
             messages.error(request, "Invalid email or password.")
 
     else:
-        messages.error(request, "Invalid request") 
+    
         return render(request,'html/login.html')
 
 
@@ -145,54 +145,59 @@ def view_cart(request):
 
 def place_order(request):
     
-    try:
-        cart = Cart.objects.get(user=request.user)
-        if not cart.items.exists():
-            messages.error(request, "Your cart is empty! Please add items to your cart before placing an order.")
-            return redirect('view_cart')  
-    except Cart.DoesNotExist:
-        return render(request, 'html/create_order.html', {
-            'error': 'No active cart found! Please add items to your cart first.',
-        })
-
-    if request.method == 'POST':
-      
-        address = request.POST.get('address', '').strip()
-        if not address:
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(user=request.user)
+            if not cart.items.exists():
+                messages.error(request, "Your cart is empty! Please add items to your cart before placing an order.")
+                return redirect('view_cart')  
+        except Cart.DoesNotExist:
             return render(request, 'html/create_order.html', {
-                'cart': cart,
-                'error': 'Delivery address is required.',
+                'error': 'No active cart found! Please add items to your cart first.',
             })
 
-       
-        order = Order.objects.create(
-            user=request.user,
-            cart = cart,
-            address=address
-        )
+        if request.method == 'POST':
+        
+            address = request.POST.get('address', '').strip()
+            if not address:
+                return render(request, 'html/create_order.html', {
+                    'cart': cart,
+                    'error': 'Delivery address is required.',
+                })
 
-       
-        for cart_item in cart.items.all():
-            OrderItem.objects.create(
-                order=order,
-                product=cart_item.product,
-                quantity=cart_item.quantity,
-                price=cart_item.product.price,  
+        
+            order = Order.objects.create(
+                user=request.user,
+                cart = cart,
+                address=address
             )
 
-      
-        order.calculate_total()
+        
+            for cart_item in cart.items.all():
+                OrderItem.objects.create(
+                    order=order,
+                    product=cart_item.product,
+                    quantity=cart_item.quantity,
+                    price=cart_item.product.price,  
+                )
 
-       
-        cart.items.all().delete()
+        
+            order.calculate_total()
 
-        messages.success(request, 'Your order has been successfully placed!')
-        return render(request, 'html/create_order.html', {'order': order})
+        
+            cart.items.all().delete()
 
+            messages.success(request, 'Your order has been successfully placed!')
+            return render(request, 'html/create_order.html', {'order': order})
+
+        
+        return render(request, 'html/create_order.html', {
+            'cart': cart,
+        })
     
-    return render(request, 'html/create_order.html', {
-        'cart': cart,
-    })
+    else:
+        messages.error(request,"you are not login to create a order")
+        return redirect('LoginUser')
 
 
 
