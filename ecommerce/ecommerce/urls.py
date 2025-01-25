@@ -35,7 +35,8 @@ urlpatterns = [
     path('cart/remove/<slug:slug>/', remove_from_cart, name='remove_from_cart'),
     path('cart/',view_cart, name='view_cart'),
     path('order/',place_order,name='place_order'),
-    path('orderlist/',order_list,name="order_list")
+    path('orderlist/',order_list,name="order_list"),
+    # path('orderdetail/<int:order_id>/',order_detail,name="order_detail"),
 ]
 
 if settings.DEBUG:

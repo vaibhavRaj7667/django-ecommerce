@@ -186,11 +186,8 @@ def place_order(request):
        
         cart.items.all().delete()
 
-        
-        return render(request, 'html/create_order.html', {
-            'message': 'Your order has been successfully placed!',
-            'order': order,
-        })
+        messages.success(request, 'Your order has been successfully placed!')
+        return render(request, 'html/create_order.html', {'order': order})
 
     
     return render(request, 'html/create_order.html', {
@@ -207,9 +204,9 @@ def order_list(request):
 
 
 
-def order_detail(request, order_id):
-    order = get_object_or_404(Order, id=order_id, user=request.user)
-    return render(request, 'order_detail.html', {'order': order})
+# def order_detail(request, order_id):
+#     order = get_object_or_404(Order, id=order_id, user=request.user)
+#     return render(request, 'html/order_detail.html', {'order': order})
 
 
 
