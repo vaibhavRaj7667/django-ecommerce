@@ -13,7 +13,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):   #for admin page 
         if not self.slug:
             self.slug = slugify(self.description)
         return super().save()
@@ -74,7 +74,7 @@ class Order(models.Model):
         return f"Order {self.id} - {self.user.username if self.user else 'Anonymous'}"
 
     def calculate_total(self):
-        """Calculate the total cost of the order based on associated CartItems."""
+      
         if self.cart:
             total = sum(item.quantity * item.product.price for item in self.cart.items.all())
             self.total = total
@@ -93,5 +93,5 @@ class OrderItem(models.Model):
         return f"{self.quantity} x {self.product.name} in Order {self.order.id}"
 
     def total_price(self):
-        """Calculate the total price for this order item."""
+        
         return self.quantity * self.price
