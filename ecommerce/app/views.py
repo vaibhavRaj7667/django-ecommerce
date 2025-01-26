@@ -126,6 +126,26 @@ def add_to_cart(request, slug):
         messages.success(request, f"{product.name} added to your cart successfully.")
     return redirect('items',slug_=product.slug)
 
+
+def cart_items_increase(request,items_id,action):
+    items = get_object_or_404(CartItem, id= items_id )
+
+    if  action =='inc':
+        items.quantity +=1
+        items.save()
+
+    elif action == 'dec':
+        if items.quantity > 1:
+            items.quantity -= 1
+            items.save()
+        else:
+            items.delete()
+            messages.success(request,f"{items.product.name} deleted ")
+   
+    return redirect('view_cart')
+   
+
+
 def remove_from_cart(request, slug):
     cart = get_or_create_cart(request)
     product = get_object_or_404(Product, slug=slug)

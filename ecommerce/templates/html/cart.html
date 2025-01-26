@@ -34,7 +34,21 @@
                     {% for cart_item in cart_items %}
                         <div class="cart-item">
                             <span class="product-name">{{cart_item.product}}</span>
-                            <span class="product-quantity">{{cart_item.quantity}}</span>
+                            <span class="product-quantity">
+
+                                <a href="{% url 'cart_items_increase' items_id=cart_item.id action='dec' %}">
+                                <button>-</button>
+                                </a>
+                                {{cart_item.quantity}}
+                            
+                                <a href="{% url 'cart_items_increase' items_id=cart_item.id action='inc' %}">
+                                <button>+</button>
+                                </a>
+
+
+                            </span>
+                            
+
                             <button class="remove-btn" onclick="location.href='{% url 'remove_from_cart' slug=cart_item.product.slug %}'">Remove</button>
                         </div>
                     {% endfor %}
