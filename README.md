@@ -28,7 +28,7 @@ Ensure you have the following installed:
 ### Steps to Run Locally
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/ecommerce-django.git
+   git clone https://github.com/vaibhavRaj7667/django-ecommerce
    cd ecommerce-django
    ```
 2. Create and activate a virtual environment:
@@ -73,6 +73,6 @@ This project is licensed under the MIT License.
 
 ## Contact
 For any queries or contributions, feel free to reach out:
-- Email: your-email@example.com
-- GitHub: [your-username](https://github.com/your-username/)
+- Email: zivaibhav1@gmail.com
+
 
