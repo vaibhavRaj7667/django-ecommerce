@@ -3,6 +3,21 @@
 ## Overview
 This is a e-commerce website built using Django. The platform allows users to browse products, add them to the cart, and proceed to checkout. It supports both logged-in users and anonymous users, ensuring a seamless shopping experience.
 
+## Screenshots
+![Screenshot 2025-04-03 111016](https://github.com/user-attachments/assets/70339fd4-d81a-403b-90c6-98a6a22b1ca7)
+
+![Screenshot 2025-04-03 111052](https://github.com/user-attachments/assets/718fafae-1520-47ea-ae02-07c39547c16e)
+
+![Screenshot 2025-04-03 111109](https://github.com/user-attachments/assets/b5f2422e-cab1-42da-9aae-89b021e3e114)
+
+![Screenshot 2025-04-03 111123](https://github.com/user-attachments/assets/92555000-6667-4178-8a11-3c8358887e16)
+
+![Screenshot 2025-04-03 111138](https://github.com/user-attachments/assets/e241294c-ab51-4e51-99c6-6fbfbbd32e1b)
+
+![Screenshot 2025-04-03 111202](https://github.com/user-attachments/assets/0b24c67f-011d-4212-b9d2-7ecbc88d4cc9)
+
+
+
 ## Features
 - User authentication (Signup, Login, Logout,)
 - Product listing with categories and filters
